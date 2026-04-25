@@ -54,6 +54,10 @@ nav.scrolled .nav-links a{color:var(--muted);}
 }
 .nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(247,148,29,0.4);}
 
+/* Foto circular do hero — visível só no mobile */
+.hero-mobile-photo{display:none;}
+.hero-mobile-row{display:none;}
+
 /* ── CAROUSEL HERO ── */
 .carousel{position:relative;height:700px;overflow:hidden;background:var(--purple-dk);}
 .carousel-track{
@@ -494,6 +498,31 @@ footer{
   .hero{grid-template-columns:1fr;}
   .hero-right{display:none;}
   .hero-left{padding:100px 24px 48px;}
+
+  /* Foto + botões lado a lado abaixo do título */
+  .hero-mobile-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    margin-top:20px;
+  }
+  .hero-mobile-row .hero-cta-row{
+    flex-direction:column;
+    align-items:flex-start;
+    margin-top:0;
+    gap:10px;
+    flex:1;
+  }
+  .hero-mobile-photo{
+    display:block;
+    width:40%;aspect-ratio:1/1;
+    object-fit:cover;object-position:center top;
+    border-radius:50%;
+    border:3px solid rgba(255,255,255,0.25);
+    box-shadow:0 8px 32px rgba(0,0,0,0.35);
+    flex-shrink:0;
+  }
   .hero-title{font-size:30px!important;}
   .hero-cards{display:none;}
   .hero-cta-row{gap:10px;}
