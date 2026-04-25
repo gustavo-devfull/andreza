@@ -97,6 +97,44 @@ document.addEventListener('keydown', e => {
   if (e.key === 'ArrowLeft')  goTo(current - 1);
 });
 
+// ── LIGHTBOX ──
+const galImgs = [...document.querySelectorAll('.gal-item img')];
+const galSrcs = galImgs.map(img => img.src);
+let lbIndex = 0;
+const lightbox  = document.getElementById('lightbox');
+const lbImg     = document.getElementById('lbImg');
+const lbCounter = document.getElementById('lbCounter');
+
+function lbOpen(i) {
+  lbIndex = i;
+  lbImg.src = galSrcs[i];
+  lbCounter.textContent = (i + 1) + ' / ' + galSrcs.length;
+  lightbox.classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function lbClose() {
+  lightbox.classList.remove('open');
+  document.body.style.overflow = '';
+}
+function lbGo(dir) {
+  lbIndex = (lbIndex + dir + galSrcs.length) % galSrcs.length;
+  lbImg.style.opacity = '0';
+  setTimeout(() => { lbImg.src = galSrcs[lbIndex]; lbImg.style.opacity = '1'; }, 150);
+  lbCounter.textContent = (lbIndex + 1) + ' / ' + galSrcs.length;
+}
+
+galImgs.forEach((img, i) => img.addEventListener('click', () => lbOpen(i)));
+document.getElementById('lbClose').addEventListener('click', lbClose);
+document.getElementById('lbPrev').addEventListener('click', () => lbGo(-1));
+document.getElementById('lbNext').addEventListener('click', () => lbGo(1));
+lightbox.addEventListener('click', e => { if (e.target === lightbox) lbClose(); });
+document.addEventListener('keydown', e => {
+  if (!lightbox.classList.contains('open')) return;
+  if (e.key === 'Escape')      lbClose();
+  if (e.key === 'ArrowRight')  lbGo(1);
+  if (e.key === 'ArrowLeft')   lbGo(-1);
+});
+
 // ── FORM ──
 function handleForm(e) {
   e.preventDefault();
