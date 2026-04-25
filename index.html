@@ -4,510 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dra. Andreza Gilio — Endocrinologia Pediátrica</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  :root {
-    --green:   oklch(32% 0.18 300);   /* roxo escuro — principal */
-    --green2:  oklch(44% 0.18 300);   /* roxo médio */
-    --cream:   oklch(98% 0.008 300);  /* branco levemente lilás */
-    --cream2:  oklch(94% 0.016 300);  /* off-white lilás */
-    --gold:    oklch(68% 0.19 50);    /* laranja — CTA */
-    --lime:    oklch(72% 0.22 132);   /* verde-limão */
-    --pink:    oklch(62% 0.22 12);    /* rosa/estrela */
-    --text:    oklch(22% 0.06 300);
-    --muted:   oklch(50% 0.06 300);
-    --serif: 'Quicksand', system-ui, sans-serif;
-    --sans:  'Quicksand', system-ui, sans-serif;
-    --max-w: 1216px;
-  }
-
-  html { scroll-behavior: smooth; }
-
-  body {
-    font-family: var(--sans);
-    background: var(--cream);
-    color: var(--text);
-    overflow-x: hidden;
-  }
-
-  .container {
-    max-width: var(--max-w);
-    margin: 0 auto;
-    width: 100%;
-  }
-
-  /* ── NAV ── */
-  nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    display: flex; align-items: center; justify-content: center;
-    padding: 0;
-    transition: background 0.4s, box-shadow 0.4s;
-  }
-  nav.scrolled {
-    background: rgba(250,248,244,0.92);
-    backdrop-filter: blur(16px);
-    box-shadow: 0 1px 0 rgba(0,0,0,0.06);
-  }
-  .nav-inner {
-    max-width: var(--max-w);
-    width: 100%;
-    display: flex; align-items: center; justify-content: space-between;
-    padding: 28px 24px;
-    transition: padding 0.4s;
-  }
-  nav.scrolled .nav-inner { padding: 16px 24px; }
-  .nav-logo {
-    display: flex; align-items: center;
-    text-decoration: none;
-  }
-  .nav-logo img { height: 48px; width: auto; transition: filter 0.4s; }
-  nav:not(.scrolled) .nav-logo img { filter: brightness(0) invert(1); }
-  nav.scrolled .nav-logo img { filter: none; }
-  .nav-links { display: flex; gap: 36px; list-style: none; }
-  .nav-links a {
-    font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase;
-    color: rgba(255,255,255,0.8); text-decoration: none;
-    transition: color 0.3s;
-  }
-  nav.scrolled .nav-links a { color: var(--muted); }
-  .nav-links a:hover { color: var(--gold) !important; }
-  .nav-cta {
-    font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase;
-    padding: 10px 24px; border-radius: 100px;
-    background: var(--gold); color: #fff; text-decoration: none;
-    transition: opacity 0.2s, transform 0.2s;
-  }
-  .nav-cta:hover { opacity: 0.85; transform: translateY(-1px); }
-
-  /* ── HERO ── */
-  .hero {
-    min-height: 100vh;
-    background: var(--green);
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    position: relative;
-    overflow: hidden;
-  }
-  .hero-left {
-    display: flex; flex-direction: column; justify-content: flex-end;
-    padding: 120px 60px 80px;
-    position: relative; z-index: 2;
-  }
-  .hero-tag {
-    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 32px;
-    opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
-  }
-  .hero-title {
-    font-family: var(--serif);
-    font-size: clamp(52px, 6vw, 88px);
-    font-weight: 300; line-height: 1.05;
-    color: var(--cream); margin-bottom: 16px;
-    opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
-  }
-  .hero-title em { font-style: italic; color: var(--gold); }
-  .hero-subtitle {
-    font-family: var(--serif); font-size: clamp(18px, 2vw, 26px);
-    font-weight: 300; color: rgba(255,255,255,0.55);
-    margin-bottom: 56px; letter-spacing: 0.02em;
-    opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
-  }
-  .hero-cycling {
-    display: flex; flex-direction: column; gap: 12px;
-    margin-bottom: 64px;
-    opacity: 0; animation: fadeUp 0.8s 0.8s forwards;
-  }
-  .hero-q {
-    display: inline-flex; align-items: center; gap: 12px;
-    font-size: 14px; letter-spacing: 0.06em;
-    color: rgba(255,255,255,0.65);
-  }
-  .hero-q::before {
-    content: '';
-    width: 20px; height: 1px; background: var(--gold); flex-shrink: 0;
-  }
-  .hero-actions {
-    display: flex; gap: 16px; flex-wrap: wrap;
-    opacity: 0; animation: fadeUp 0.8s 1.0s forwards;
-  }
-  .btn-primary {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 16px 36px; border-radius: 100px;
-    background: var(--gold); color: #fff;
-    font-size: 14px; letter-spacing: 0.06em; text-transform: uppercase;
-    text-decoration: none; transition: transform 0.2s, opacity 0.2s;
-    font-family: var(--sans); font-weight: 500;
-  }
-  .btn-primary:hover { transform: translateY(-2px); opacity: 0.9; }
-  .btn-ghost {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 16px 36px; border-radius: 100px;
-    border: 1px solid rgba(255,255,255,0.25);
-    color: rgba(255,255,255,0.8); font-size: 14px;
-    letter-spacing: 0.06em; text-transform: uppercase;
-    text-decoration: none; transition: border-color 0.2s, color 0.2s;
-    font-family: var(--sans);
-  }
-  .btn-ghost:hover { border-color: var(--gold); color: var(--gold); }
-
-  .hero-right {
-    position: relative; overflow: hidden;
-  }
-  .hero-img {
-    position: absolute; inset: 0;
-    background: url('https://andrezagilio.com.br/wp-content/uploads/2023/06/DSC00039-1.jpg') center/cover no-repeat;
-    filter: brightness(0.75) saturate(0.8);
-    animation: scaleIn 1.4s 0s cubic-bezier(0.25,0.46,0.45,0.94) forwards;
-    transform: scale(1.08);
-  }
-  .hero-img-overlay {
-    position: absolute; inset: 0;
-    background: linear-gradient(90deg, var(--green) 0%, transparent 40%),
-                linear-gradient(0deg, var(--green) 0%, transparent 30%);
-    z-index: 1;
-  }
-  .hero-crm {
-    position: absolute; bottom: 80px; right: 60px; z-index: 2;
-    font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
-    color: rgba(255,255,255,0.4);
-    opacity: 0; animation: fadeUp 0.8s 1.2s forwards;
-  }
-
-  /* ── MARQUEE ── */
-  .marquee-wrap {
-    background: var(--lime); overflow: hidden;
-    padding: 18px 0;
-  }
-  .marquee-track {
-    display: flex; gap: 64px; width: max-content;
-    animation: marquee 24s linear infinite;
-  }
-  .marquee-item {
-    font-family: var(--serif); font-size: 20px; font-weight: 300;
-    font-style: italic; color: #fff; white-space: nowrap;
-    display: flex; align-items: center; gap: 64px;
-  }
-  .marquee-item::after {
-    content: '·'; font-size: 24px; color: rgba(255,255,255,0.5);
-  }
-
-  /* ── SOBRE ── */
-  .sobre {
-    display: grid; grid-template-columns: 1fr 1fr;
-    min-height: 90vh;
-  }
-  .sobre-img-wrap {
-    position: relative; overflow: hidden;
-    background: var(--cream2);
-  }
-  .sobre-img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s ease;
-  }
-  .sobre-img-wrap:hover .sobre-img { transform: scale(1.03); }
-  .sobre-content {
-    padding: 100px 80px;
-    display: flex; flex-direction: column; justify-content: center;
-  }
-  .section-label {
-    font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--gold); margin-bottom: 28px;
-  }
-  .section-title {
-    font-family: var(--serif);
-    font-size: clamp(36px, 3.5vw, 56px);
-    font-weight: 300; line-height: 1.1;
-    color: var(--green); margin-bottom: 32px;
-  }
-  .section-title em { font-style: italic; }
-  .sobre-text {
-    font-size: 16px; line-height: 1.8;
-    color: var(--muted); margin-bottom: 24px;
-    font-weight: 300;
-  }
-  .sobre-creds {
-    display: flex; flex-direction: column; gap: 12px;
-    margin-top: 40px;
-    padding-top: 40px;
-    border-top: 1px solid var(--cream2);
-  }
-  .cred-item {
-    display: flex; align-items: center; gap: 14px;
-    font-size: 13px; color: var(--muted);
-  }
-  .cred-dot {
-    width: 6px; height: 6px; border-radius: 50%;
-    background: var(--gold); flex-shrink: 0;
-  }
-  .stat-row {
-    display: flex; gap: 48px; margin-top: 40px;
-  }
-  .stat { display: flex; flex-direction: column; gap: 4px; }
-  .stat-num {
-    font-family: var(--serif); font-size: 48px;
-    font-weight: 300; color: var(--green); line-height: 1;
-  }
-  .stat-label { font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
-
-  /* ── ESPECIALIDADE ── */
-  .especialidade {
-    background: var(--green);
-    padding: 120px 60px;
-  }
-  .espec-header {
-    display: flex; justify-content: space-between; align-items: flex-end;
-    margin-bottom: 80px;
-  }
-  .espec-title {
-    font-family: var(--serif);
-    font-size: clamp(36px, 4vw, 64px);
-    font-weight: 300; color: var(--cream); line-height: 1.1;
-  }
-  .espec-title em { font-style: italic; color: var(--gold); }
-  .espec-text {
-    max-width: 460px; font-size: 15px; line-height: 1.8;
-    color: rgba(255,255,255,0.55); font-weight: 300;
-  }
-
-  /* ── AREAS ── */
-  .areas { padding: 120px 60px; background: var(--cream); }
-  .areas-grid {
-    display: grid; grid-template-columns: repeat(2, 1fr);
-    gap: 2px; margin-top: 72px;
-  }
-  .area-card {
-    position: relative; overflow: hidden;
-    aspect-ratio: 4/3; cursor: pointer;
-  }
-  .area-img {
-    width: 100%; height: 100%; object-fit: cover;
-    transition: transform 0.6s ease;
-    filter: brightness(0.65);
-  }
-  .area-card:hover .area-img { transform: scale(1.05); filter: brightness(0.5); }
-  .area-overlay {
-    position: absolute; inset: 0;
-    display: flex; flex-direction: column; justify-content: flex-end;
-    padding: 48px;
-    background: linear-gradient(0deg, rgba(20,50,35,0.85) 0%, transparent 60%);
-    z-index: 1;
-  }
-  .area-num {
-    font-family: var(--serif); font-size: 64px; font-weight: 300;
-    color: rgba(255,255,255,0.15); line-height: 1;
-    margin-bottom: -8px;
-  }
-  .area-name {
-    font-family: var(--serif); font-size: 28px; font-weight: 400;
-    color: #fff; line-height: 1.2; margin-bottom: 12px;
-  }
-  .area-desc {
-    font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.65);
-    max-height: 0; overflow: hidden;
-    transition: max-height 0.5s ease, opacity 0.4s;
-    opacity: 0;
-  }
-  .area-card:hover .area-desc { max-height: 200px; opacity: 1; }
-  .area-link {
-    display: inline-flex; align-items: center; gap: 8px;
-    margin-top: 16px; font-size: 13px; letter-spacing: 0.08em;
-    text-transform: uppercase; color: var(--gold);
-    text-decoration: none;
-    max-height: 0; overflow: hidden; opacity: 0;
-    transition: max-height 0.5s ease, opacity 0.4s 0.1s;
-  }
-  .area-card:hover .area-link { max-height: 40px; opacity: 1; }
-
-  /* ── GALERIA ── */
-  .galeria { padding: 120px 60px; background: var(--cream2); }
-  .galeria-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    grid-template-rows: 280px 280px;
-    gap: 8px; margin-top: 64px;
-  }
-  .gal-item { overflow: hidden; }
-  .gal-item:first-child { grid-row: 1/3; }
-  .gal-item img {
-    width: 100%; height: 100%; object-fit: cover;
-    transition: transform 0.6s ease, filter 0.4s;
-    filter: brightness(0.9) saturate(0.9);
-  }
-  .gal-item:hover img { transform: scale(1.05); filter: brightness(1) saturate(1); }
-
-  /* ── CONTATO ── */
-  .contato {
-    display: grid; grid-template-columns: 1fr 1fr;
-    min-height: 80vh;
-  }
-  .contato-left {
-    background: var(--green);
-    padding: 100px 80px;
-    display: flex; flex-direction: column; justify-content: center;
-  }
-  .contato-title {
-    font-family: var(--serif);
-    font-size: clamp(36px, 4vw, 60px);
-    font-weight: 300; color: var(--cream); line-height: 1.1;
-    margin-bottom: 48px;
-  }
-  .contato-title em { font-style: italic; color: var(--gold); }
-  .info-block {
-    display: flex; flex-direction: column; gap: 32px;
-  }
-  .info-item { display: flex; flex-direction: column; gap: 6px; }
-  .info-label {
-    font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--gold);
-  }
-  .info-value {
-    font-size: 16px; color: rgba(255,255,255,0.8); line-height: 1.5;
-  }
-  .info-value a { color: rgba(255,255,255,0.8); text-decoration: none; }
-  .info-value a:hover { color: var(--gold); }
-  .social-row { display: flex; gap: 16px; margin-top: 48px; }
-  .social-btn {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 12px 24px; border-radius: 100px;
-    border: 1px solid rgba(255,255,255,0.2);
-    color: rgba(255,255,255,0.7); font-size: 13px;
-    letter-spacing: 0.06em; text-transform: uppercase;
-    text-decoration: none; transition: all 0.2s;
-  }
-  .social-btn:hover { background: var(--gold); border-color: var(--gold); color: #fff; }
-
-  .contato-right {
-    background: var(--cream); padding: 100px 80px;
-    display: flex; flex-direction: column; justify-content: center;
-  }
-  .form-title {
-    font-family: var(--serif); font-size: 32px;
-    font-weight: 300; color: var(--green); margin-bottom: 40px;
-  }
-  .form-group { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; }
-  .form-label { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
-  .form-input, .form-textarea {
-    border: none; border-bottom: 1px solid var(--cream2);
-    background: transparent; padding: 12px 0;
-    font-family: var(--sans); font-size: 15px; color: var(--text);
-    outline: none; transition: border-color 0.3s;
-  }
-  .form-input:focus, .form-textarea:focus { border-color: var(--green); }
-  .form-textarea { resize: none; min-height: 100px; }
-  .btn-submit {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 16px 40px; border-radius: 100px;
-    background: var(--green); color: #fff;
-    font-family: var(--sans); font-size: 13px;
-    letter-spacing: 0.1em; text-transform: uppercase;
-    border: none; cursor: pointer; margin-top: 16px;
-    transition: transform 0.2s, opacity 0.2s;
-  }
-  .btn-submit:hover { transform: translateY(-2px); opacity: 0.85; }
-
-  /* ── FOOTER ── */
-  .hero-deco {
-    position: absolute; inset: 0; width: 100%; height: 100%;
-    pointer-events: none; z-index: 3;
-  }
-
-  footer {
-    background: oklch(22% 0.12 300);
-    padding: 60px;
-    display: flex; align-items: center; justify-content: space-between;
-    flex-wrap: wrap; gap: 24px;
-  }
-  .footer-logo {
-    font-family: var(--serif); font-size: 20px;
-    font-weight: 300; color: var(--cream); letter-spacing: 0.04em;
-  }
-  .footer-copy {
-    font-size: 12px; color: rgba(255,255,255,0.3); letter-spacing: 0.06em;
-  }
-  .footer-crm { font-size: 12px; color: rgba(255,255,255,0.3); letter-spacing: 0.06em; }
-
-  /* ── FLOATING WA ── */
-  .wa-float {
-    position: fixed; bottom: 32px; right: 32px; z-index: 200;
-    width: 56px; height: 56px; border-radius: 50%;
-    background: #25D366; display: flex; align-items: center; justify-content: center;
-    box-shadow: 0 8px 32px rgba(37,211,102,0.4);
-    text-decoration: none;
-    transition: transform 0.2s, box-shadow 0.2s;
-    animation: pulse 2s ease-in-out infinite;
-  }
-  .wa-float:hover { transform: scale(1.1); box-shadow: 0 12px 40px rgba(37,211,102,0.6); animation: none; }
-  .wa-float svg { width: 28px; height: 28px; fill: #fff; }
-
-  /* ── ANIMATIONS ── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(24px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-  @keyframes scaleIn {
-    from { transform: scale(1.08); }
-    to   { transform: scale(1); }
-  }
-  @keyframes marquee {
-    from { transform: translateX(0); }
-    to   { transform: translateX(-50%); }
-  }
-  @keyframes pulse {
-    0%, 100% { box-shadow: 0 8px 32px rgba(37,211,102,0.4); }
-    50%       { box-shadow: 0 8px 48px rgba(37,211,102,0.7); }
-  }
-
-  /* ── SITE WRAP ── */
-  .site-wrap {
-    max-width: var(--max-w);
-    margin: 0 auto;
-    overflow: hidden;
-    box-shadow: 0 0 80px rgba(0,0,0,0.08);
-  }
-
-  /* ── SCROLL REVEAL ── */
-  .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s ease; }
-  .reveal.visible { opacity: 1; transform: translateY(0); }
-  .reveal-delay-1 { transition-delay: 0.1s; }
-  .reveal-delay-2 { transition-delay: 0.2s; }
-  .reveal-delay-3 { transition-delay: 0.3s; }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 900px) {
-    .nav-inner { padding: 16px 20px !important; }
-    .nav-links { display: none; }
-    .hero { grid-template-columns: 1fr; }
-    .hero-right { display: none; }
-    .hero-left { padding: 120px 24px 80px; }
-    .sobre { grid-template-columns: 1fr; }
-    .sobre-img-wrap { height: 50vw; }
-    .sobre-content { padding: 64px 24px; }
-    .areas { padding: 80px 24px; }
-    .areas-grid { grid-template-columns: 1fr; }
-    .espec-header { flex-direction: column; gap: 24px; }
-    .especialidade { padding: 80px 24px; }
-    .galeria { padding: 80px 24px; }
-    .galeria-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
-    .gal-item:first-child { grid-column: 1/3; grid-row: auto; }
-    .contato { grid-template-columns: 1fr; }
-    .contato-left, .contato-right { padding: 64px 24px; }
-    .footer { padding: 40px 24px; }
-    .stat-row { gap: 24px; }
-  }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <div class="site-wrap">
+
 <!-- NAV -->
 <nav id="nav">
   <div class="nav-inner">
     <a href="#" class="nav-logo">
-      <img src="uploads/pasted-1777074716741-0.png" alt="Dra. Andreza Gilio">
+      <img class="logo-main" src="uploads/pasted-1777074716741-0.png" alt="Dra. Andreza Gilio" style="filter:brightness(0) invert(1);">
+      <img class="logo-scroll" src="https://andrezagilio.com.br/wp-content/uploads/2023/06/Group.svg" alt="Dra. Andreza Gilio">
     </a>
     <ul class="nav-links">
       <li><a href="#sobre">Sobre</a></li>
@@ -515,36 +24,146 @@
       <li><a href="#galeria">Clínica</a></li>
       <li><a href="#contato">Contato</a></li>
     </ul>
-    <a href="https://wa.me/5516997950485" target="_blank" class="nav-cta">Agendar Consulta</a>
+    <a href="https://wa.me/5516997950485" target="_blank" class="nav-cta">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.116 1.524 5.849L.057 23.428a.5.5 0 0 0 .617.61l5.765-1.516A11.953 11.953 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.955 9.955 0 0 1-5.093-1.396l-.366-.217-3.786.994 1.012-3.695-.238-.38A9.954 9.954 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Agendar
+    </a>
   </div>
 </nav>
 
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-left">
-    <p class="hero-tag">Endocrinologia Pediátrica · Araraquara, SP</p>
-    <h1 class="hero-title">Cuidando do<br><em>crescimento</em><br>do seu filho</h1>
-    <p class="hero-subtitle">com ciência, atenção e carinho</p>
-    <div class="hero-cycling">
-      <span class="hero-q">Baixa estatura?</span>
-      <span class="hero-q">Puberdade precoce?</span>
-      <span class="hero-q">Diabetes infantil?</span>
-      <span class="hero-q">Obesidade infantil?</span>
+<!-- CAROUSEL HERO -->
+<div class="carousel" id="carousel">
+  <div class="carousel-track" id="carouselTrack">
+
+    <!-- SLIDE 1 — Hero atual (split) -->
+    <div class="cslide entering" id="slide0">
+      <div class="cslide-split">
+        <div class="hero-left">
+          <span class="hero-eyebrow">Endocrinologia Pediátrica</span>
+          <h1 class="hero-title" style="font-size: 44px">Cuidado especializado<br><span>para o seu filho</span></h1>
+          <p class="hero-name" style="width: 0px; height: 0px; font-size: 1px; margin: 0px 0px 1px">
+</p>
+          <div class="hero-cards">
+            <div class="hcard"><div class="hcard-icon c1"><svg viewBox="0 0 24 24" fill="none" stroke="#8DC63F" stroke-width="2" stroke-linecap="round" style="width: 24px"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div class="hcard-title">Baixa Estatura</div><div class="hcard-sub">Distúrbios do crescimento e desenvolvimento</div></div>
+            <div class="hcard"><div class="hcard-icon c2"><svg viewBox="0 0 24 24" fill="none" stroke="#F7941D" stroke-width="2" stroke-linecap="round" style="width: 24px"><circle cx="12" cy="8" r="4"/><path d="M12 12v8M8 20h8"/></svg></div><div class="hcard-title">Puberdade Precoce</div><div class="hcard-sub">Distúrbios do desenvolvimento sexual</div></div>
+            <div class="hcard"><div class="hcard-icon c3"><svg viewBox="0 0 24 24" fill="none" stroke="#E8375A" stroke-width="2" stroke-linecap="round" style="width: 24px"><path d="M12 6c0 0-6 5-6 10a6 6 0 0012 0c0-5-6-10-6-10z"/></svg></div><div class="hcard-title">Diabetes Infantil</div><div class="hcard-sub">Monitoramento e controle glicêmico</div></div>
+            <div class="hcard"><div class="hcard-icon c4"><svg viewBox="0 0 24 24" fill="none" stroke="#8B55C0" stroke-width="2" stroke-linecap="round" style="width: 24px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div class="hcard-title">Obesidade Infantil</div><div class="hcard-sub">Tratamento e acompanhamento nutricional</div></div>
+          </div>
+          <div class="hero-cta-row">
+            <a href="https://wa.me/5516997950485" target="_blank" class="btn-hero-primary">Agendar consulta →</a>
+            <a href="#sobre" class="btn-hero-ghost">Conheça a Dra. Andreza</a>
+          </div>
+        </div>
+        <div class="hero-right">
+          <div class="hero-photo zoomed" id="heroPhoto"></div>
+          <div class="hero-photo-overlay"></div>
+          <div class="hero-badge">
+            <div class="hero-badge-num" id="yearsCount">14+</div>
+            <div class="hero-badge-label">Anos de experiência</div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="hero-actions">
-      <a href="https://wa.me/5516997950485" target="_blank" class="btn-primary">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.116 1.524 5.849L.057 23.428a.5.5 0 0 0 .617.61l5.765-1.516A11.953 11.953 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.955 9.955 0 0 1-5.093-1.396l-.366-.217-3.786.994 1.012-3.695-.238-.38A9.954 9.954 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
-        WhatsApp
-      </a>
-      <a href="#areas" class="btn-ghost">Áreas de Atuação</a>
+
+    <!-- SLIDE 2 — Distúrbio do Crescimento -->
+    <div class="cslide" id="slide1">
+      <div class="cslide-full">
+        <div class="cslide-panel" style="background:#A8D44A;">
+          <div class="cslide-content">
+            <div class="cslide-tag" style="color:rgba(0,0,0,0.5)"><span style="display:inline-block;width:28px;height:2px;background:rgba(0,0,0,0.4)"></span> 01 · Área de Atuação</div>
+            <h2 class="cslide-title" style="color:#1E1228;">Distúrbio do<br>Crescimento</h2>
+            <p class="cslide-desc" style="color:rgba(30,18,40,0.65);">Condições que afetam o crescimento físico e maturação sexual em crianças. O diagnóstico precoce garante um desenvolvimento saudável para cada fase da vida.</p>
+            <a href="https://wa.me/5516997950485" target="_blank" class="cslide-cta" style="background:#1E1228;color:#fff;">Agendar consulta →</a>
+          </div>
+          <span class="cslide-num" style="color:#1E1228;">01</span>
+        </div>
+        <div class="cslide-photo">
+          <img src="uploads/ChatGPT Image 24 de abr. de 2026, 21_46_31.png" alt="Distúrbio do Crescimento">
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 3 — Distúrbios da Tireoide -->
+    <div class="cslide" id="slide2">
+      <div class="cslide-full">
+        <div class="cslide-panel" style="background:#F5A800;">
+          <div class="cslide-content">
+            <div class="cslide-tag" style="color:rgba(0,0,0,0.5)"><span style="display:inline-block;width:28px;height:2px;background:rgba(0,0,0,0.4)"></span> 02 · Área de Atuação</div>
+            <h2 class="cslide-title" style="color:#1E1228;">Distúrbios<br>da Tireoide</h2>
+            <p class="cslide-desc" style="color:rgba(30,18,40,0.65);">Hipotireoidismo, hipertireoidismo e outras doenças que causam desequilíbrios hormonais. Tratamento adequado para garantir o bem-estar da criança.</p>
+            <a href="https://wa.me/5516997950485" target="_blank" class="cslide-cta" style="background:#1E1228;color:#fff;">Agendar consulta →</a>
+          </div>
+          <span class="cslide-num" style="color:#1E1228;">02</span>
+        </div>
+        <div class="cslide-photo">
+          <img src="uploads/ChatGPT Image 24 de abr. de 2026, 21_46_14.png" alt="Distúrbios da Tireoide">
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 4 — Diabetes Infantil -->
+    <div class="cslide" id="slide3">
+      <div class="cslide-full">
+        <div class="cslide-panel" style="background:#E8436A;">
+          <div class="cslide-content">
+            <div class="cslide-tag" style="color:rgba(255,255,255,0.6)"><span style="display:inline-block;width:28px;height:2px;background:rgba(255,255,255,0.5)"></span> 03 · Área de Atuação</div>
+            <h2 class="cslide-title" style="color:#fff;">Diabetes<br>Infantil</h2>
+            <p class="cslide-desc" style="color:rgba(255,255,255,0.7);">Dificuldade na regulação dos níveis de açúcar no sangue. Monitoramento, uso de insulina e orientação de estilo de vida saudável para cada criança.</p>
+            <a href="https://wa.me/5516997950485" target="_blank" class="cslide-cta" style="background:#fff;color:#E8436A;">Agendar consulta →</a>
+          </div>
+          <span class="cslide-num" style="color:#fff;">03</span>
+        </div>
+        <div class="cslide-photo">
+          <img src="uploads/ChatGPT Image 24 de abr. de 2026, 21_48_11.png" alt="Diabetes Infantil">
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 5 — Distúrbios da Puberdade -->
+    <div class="cslide" id="slide4">
+      <div class="cslide-full">
+        <div class="cslide-panel" style="background:#6B3FA0;">
+          <div class="cslide-content">
+            <div class="cslide-tag" style="color:rgba(255,255,255,0.6)"><span style="display:inline-block;width:28px;height:2px;background:rgba(255,255,255,0.5)"></span> 04 · Área de Atuação</div>
+            <h2 class="cslide-title" style="color:#fff;">Distúrbios<br>da Puberdade</h2>
+            <p class="cslide-desc" style="color:rgba(255,255,255,0.7);">Puberdade precoce, tardia ou anormalidades no desenvolvimento sexual. Cuidado especializado para saúde emocional e física dos adolescentes.</p>
+            <a href="https://wa.me/5516997950485" target="_blank" class="cslide-cta" style="background:#fff;color:#6B3FA0;">Agendar consulta →</a>
+          </div>
+          <span class="cslide-num" style="color:#fff;">04</span>
+        </div>
+        <div class="cslide-photo">
+          <img src="uploads/ChatGPT Image 24 de abr. de 2026, 21_46_04.png" alt="Distúrbios da Puberdade">
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.carousel-track -->
+
+  <!-- Arrows -->
+  <div class="carousel-arrows">
+    <button class="carr" id="prevBtn" aria-label="Anterior">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="carr" id="nextBtn" aria-label="Próximo">
+      <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </div>
+
+  <!-- Dots -->
+  <div class="carousel-controls">
+    <div class="carousel-dots" id="carouselDots">
+      <button class="cdot active" data-i="0"></button>
+      <button class="cdot" data-i="1"></button>
+      <button class="cdot" data-i="2"></button>
+      <button class="cdot" data-i="3"></button>
+      <button class="cdot" data-i="4"></button>
     </div>
   </div>
-  <div class="hero-right">
-    <div class="hero-img"></div>
-    <div class="hero-img-overlay"></div>
-  </div>
-  <p class="hero-crm">CRM-SP 129977 · RQE 422561</p>
-</section>
+
+  <!-- Progress -->
+  <div class="carousel-progress"><div class="carousel-progress-bar" id="progressBar"></div></div>
+
+</div><!-- /.carousel -->
 
 <!-- MARQUEE -->
 <div class="marquee-wrap">
@@ -555,7 +174,6 @@
     <span class="marquee-item">Distúrbios da Puberdade</span>
     <span class="marquee-item">Obesidade Infantil</span>
     <span class="marquee-item">Endocrinologia Pediátrica</span>
-    <!-- duplicate for seamless loop -->
     <span class="marquee-item">Distúrbios do Crescimento</span>
     <span class="marquee-item">Distúrbios da Tireoide</span>
     <span class="marquee-item">Diabetes Infantil</span>
@@ -568,85 +186,121 @@
 <!-- SOBRE -->
 <section class="sobre" id="sobre">
   <div class="sobre-img-wrap">
-    <img class="sobre-img" src="https://andrezagilio.com.br/wp-content/uploads/2023/06/MG_7802-768x512-1.jpg" alt="Dra. Andreza Gilio">
+    <img class="sobre-img" src="uploads/pasted-1777078299378-0.png" alt="Dra. Andreza Gilio">
+    <span class="sobre-img-badge">CRM-SP 129977</span>
   </div>
   <div class="sobre-content">
     <p class="section-label reveal">Sobre a Médica</p>
-    <h2 class="section-title reveal reveal-delay-1">Dra. Andreza<br><em>Gilio</em></h2>
-    <p class="sobre-text reveal reveal-delay-2">
-      Médica formada pela Faculdade de Medicina de Ribeirão Preto (USP), em 2007, com especialização em <strong>Endocrinologia Pediátrica</strong> pela Faculdade de Medicina de São Paulo (USP).
-    </p>
-    <p class="sobre-text reveal reveal-delay-2">
-      Apaixonada pela saúde infantil, acredita que o desenvolvimento das crianças deve ser tratado com atenção e muito carinho, de forma a prezar pelo equilíbrio.
-    </p>
-    <div class="stat-row reveal reveal-delay-3">
-      <div class="stat">
-        <span class="stat-num">14+</span>
-        <span class="stat-label">Anos de experiência</span>
-      </div>
-      <div class="stat">
-        <span class="stat-num">2</span>
-        <span class="stat-label">Títulos de especialização</span>
-      </div>
+    <h2 class="section-title reveal rd1">Dra. Andreza <em>Gilio</em></h2>
+    <p class="sobre-text reveal rd2">Médica formada pela Faculdade de Medicina de Ribeirão Preto (USP), em 2007, com especialização em <strong>Endocrinologia Pediátrica</strong> pela Faculdade de Medicina de São Paulo (USP).</p>
+    <p class="sobre-text reveal rd2">Apaixonada pela saúde infantil, acredita que o desenvolvimento das crianças deve ser tratado com atenção e muito carinho, de forma a prezar pelo equilíbrio.</p>
+    <div class="stats-grid reveal rd3">
+      <div class="stat-card"><div class="stat-card-num" data-target="14">0</div><div class="stat-card-label">Anos de experiência</div></div>
+      <div class="stat-card"><div class="stat-card-num" data-target="2">0</div><div class="stat-card-label">Títulos de especialização</div></div>
     </div>
-    <div class="sobre-creds reveal reveal-delay-3">
-      <div class="cred-item"><span class="cred-dot"></span> Sociedade Brasileira de Pediatria</div>
-      <div class="cred-item"><span class="cred-dot"></span> Sociedade Brasileira de Endocrinologia e Metabologia</div>
-      <div class="cred-item"><span class="cred-dot"></span> CRM-SP 129977 · RQE: 422561</div>
+    <div class="creds reveal rd4">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;">
+        <div style="flex:1;">
+          <div class="cred"><span class="cred-dot"></span>Sociedade Brasileira de Pediatria</div>
+          <div class="cred"><span class="cred-dot"></span>Sociedade Brasileira de Endocrinologia e Metabologia</div>
+          <div class="cred"><span class="cred-dot"></span>RQE: 422561</div>
+        </div>
+        <img src="https://andrezagilio.com.br/wp-content/uploads/2023/06/Group.svg" alt="" style="height:64px;flex-shrink:0;">
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ESPECIALIDADE -->
-<section class="especialidade">
-  <div class="espec-header">
-    <h2 class="espec-title reveal">Sobre a<br><em>Endocrinologia</em><br>Pediátrica</h2>
-    <p class="espec-text reveal reveal-delay-2">
-      Especialidade da Medicina dedicada ao cuidado da saúde de bebês, crianças, pré-adolescentes e adolescentes. A endocrinologia pediátrica se dedica ao diagnóstico e tratamento de distúrbios hormonais, que podem afetar o crescimento, desenvolvimento, metabolismo e reprodução das crianças. O objetivo é garantir o equilíbrio hormonal adequado para um crescimento saudável.
-    </p>
+<!-- ENDOCRINOLOGIA -->
+<section class="endo">
+  <div class="endo-inner">
+    <div>
+      <img src="https://andrezagilio.com.br/wp-content/uploads/2023/06/Arte.svg" alt="" class="endo-arte reveal" style="max-width:180px;margin-bottom:28px;opacity:0.85;">
+      <h2 class="endo-title reveal">O que é <em>Endocrinologia Pediátrica?</em></h2>
+      <div class="endo-line reveal rd1"></div>
+    </div>
+    <div>
+      <p class="endo-text reveal rd1">Especialidade da Medicina dedicada ao diagnóstico e tratamento de distúrbios hormonais em bebês, crianças, pré-adolescentes e adolescentes. Esses distúrbios podem afetar o crescimento, desenvolvimento, metabolismo e reprodução. O objetivo é garantir o equilíbrio hormonal adequado para um crescimento saudável.</p>
+      <div class="endo-pills reveal rd2">
+        <span class="pill">Crescimento</span>
+        <span class="pill">Tireoide</span>
+        <span class="pill">Diabetes</span>
+        <span class="pill">Puberdade</span>
+        <span class="pill">Metabolismo</span>
+        <span class="pill">Hormônios</span>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- AREAS -->
 <section class="areas" id="areas">
-  <p class="section-label reveal">Especialidades</p>
-  <h2 class="section-title reveal reveal-delay-1">Áreas de <em>Atuação</em></h2>
-  <div class="areas-grid">
-    <div class="area-card">
-      <img class="area-img" src="https://andrezagilio.com.br/wp-content/uploads/2023/06/4-2.jpg" alt="Distúrbio do Crescimento">
-      <div class="area-overlay">
-        <span class="area-num">01</span>
-        <h3 class="area-name">Distúrbio do Crescimento</h3>
-        <p class="area-desc">Condições que afetam o crescimento físico e maturação sexual em crianças, diagnosticadas e tratadas para garantir um desenvolvimento adequado.</p>
-        <a href="https://wa.me/5516997950485" target="_blank" class="area-link">Agendar consulta →</a>
-      </div>
+  <div class="areas-header">
+    <div>
+      <p class="section-label reveal">Especialidades</p>
+      <h2 class="section-title reveal rd1">Áreas de <em>Atuação</em></h2>
     </div>
-    <div class="area-card">
-      <img class="area-img" src="https://andrezagilio.com.br/wp-content/uploads/2023/06/3-2.jpg" alt="Distúrbios da Tireoide">
-      <div class="area-overlay">
-        <span class="area-num">02</span>
-        <h3 class="area-name">Distúrbios da Tireoide</h3>
-        <p class="area-desc">Condições que afetam o funcionamento da glândula tireoide, incluindo hipotireoidismo, hipertireoidismo e outras doenças.</p>
-        <a href="https://wa.me/5516997950485" target="_blank" class="area-link">Agendar consulta →</a>
+    <a href="https://wa.me/5516997950485" target="_blank" class="btn-hero-primary reveal rd2" style="white-space:nowrap;">Agendar consulta →</a>
+  </div>
+  <div class="areas-list">
+    <div class="acard reveal">
+      <div class="acard-icon-wrap">
+        <svg viewBox="0 0 32 32" fill="none" stroke="#8DC63F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 4v24M10 10l6-6 6 6M10 22l6 6 6-6"/>
+          <circle cx="16" cy="16" r="4"/>
+        </svg>
       </div>
+      <div class="acard-body">
+        <div class="acard-num">01</div>
+        <div class="acard-title">Distúrbio do Crescimento</div>
+        <div class="acard-desc">Condições que afetam o crescimento físico e maturação sexual, diagnosticadas e tratadas para garantir desenvolvimento adequado da criança.</div>
+      </div>
+      <a href="https://wa.me/5516997950485" target="_blank" class="acard-btn">Agendar →</a>
     </div>
-    <div class="area-card">
-      <img class="area-img" src="https://andrezagilio.com.br/wp-content/uploads/2023/06/2-1.jpg" alt="Diabetes Infantil">
-      <div class="area-overlay">
-        <span class="area-num">03</span>
-        <h3 class="area-name">Diabetes Infantil</h3>
-        <p class="area-desc">Condição em que crianças apresentam dificuldades na regulação dos níveis de açúcar no sangue, com manejo e tratamento especializado.</p>
-        <a href="https://wa.me/5516997950485" target="_blank" class="area-link">Agendar consulta →</a>
+    <div class="acard reveal rd1">
+      <div class="acard-icon-wrap">
+        <svg viewBox="0 0 32 32" fill="none" stroke="#F7941D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <ellipse cx="16" cy="14" rx="6" ry="8"/>
+          <path d="M10 14c-3 2-4 6-2 9s6 4 8 2M22 14c3 2 4 6 2 9s-6 4-8 2"/>
+          <line x1="16" y1="22" x2="16" y2="28"/>
+        </svg>
       </div>
+      <div class="acard-body">
+        <div class="acard-num">02</div>
+        <div class="acard-title">Distúrbios da Tireoide</div>
+        <div class="acard-desc">Hipotireoidismo, hipertireoidismo e outras doenças da tireoide que causam desequilíbrios hormonais e afetam o bem-estar da criança.</div>
+      </div>
+      <a href="https://wa.me/5516997950485" target="_blank" class="acard-btn">Agendar →</a>
     </div>
-    <div class="area-card">
-      <img class="area-img" src="https://andrezagilio.com.br/wp-content/uploads/2023/06/1.jpg" alt="Distúrbios da Puberdade">
-      <div class="area-overlay">
-        <span class="area-num">04</span>
-        <h3 class="area-name">Distúrbios da Puberdade</h3>
-        <p class="area-desc">Puberdade precoce, tardia ou anormalidades no desenvolvimento dos caracteres sexuais secundários, tratados com cuidado especializado.</p>
-        <a href="https://wa.me/5516997950485" target="_blank" class="area-link">Agendar consulta →</a>
+    <div class="acard reveal rd2">
+      <div class="acard-icon-wrap">
+        <svg viewBox="0 0 32 32" fill="none" stroke="#E8375A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 6c0 0-8 8-8 14a8 8 0 0 0 16 0C24 14 16 6 16 6z"/>
+          <path d="M12 22c1-2 2-3 4-3s3 1 4 3"/>
+        </svg>
       </div>
+      <div class="acard-body">
+        <div class="acard-num">03</div>
+        <div class="acard-title">Diabetes Infantil</div>
+        <div class="acard-desc">Dificuldade na regulação dos níveis de açúcar no sangue. Monitoramento, uso de insulina e orientação de estilo de vida saudável.</div>
+      </div>
+      <a href="https://wa.me/5516997950485" target="_blank" class="acard-btn">Agendar →</a>
+    </div>
+    <div class="acard reveal rd3">
+      <div class="acard-icon-wrap">
+        <svg viewBox="0 0 32 32" fill="none" stroke="#8B55C0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="16" cy="10" r="5"/>
+          <path d="M8 28c0-4.4 3.6-8 8-8s8 3.6 8 8"/>
+          <path d="M22 13c2 1 3 3 3 5"/>
+          <path d="M10 13c-2 1-3 3-3 5"/>
+        </svg>
+      </div>
+      <div class="acard-body">
+        <div class="acard-num">04</div>
+        <div class="acard-title">Distúrbios da Puberdade</div>
+        <div class="acard-desc">Puberdade precoce, tardia ou anormalidades no desenvolvimento sexual. Diagnóstico e tratamento cuidadoso para saúde emocional e física.</div>
+      </div>
+      <a href="https://wa.me/5516997950485" target="_blank" class="acard-btn">Agendar →</a>
     </div>
   </div>
 </section>
@@ -654,50 +308,54 @@
 <!-- GALERIA -->
 <section class="galeria" id="galeria">
   <p class="section-label reveal">Espaço de Atendimento</p>
-  <h2 class="section-title reveal reveal-delay-1">A <em>Clínica</em></h2>
-  <div class="galeria-grid">
+  <h2 class="section-title reveal rd1">A <em>Clínica</em></h2>
+  <div class="gal-grid">
     <div class="gal-item reveal">
       <img src="https://andrezagilio.com.br/wp-content/uploads/2023/06/MG_7847.jpg" alt="Clínica">
+      <div class="gal-overlay"></div>
     </div>
-    <div class="gal-item reveal reveal-delay-1">
+    <div class="gal-item reveal rd1">
       <img src="https://andrezagilio.com.br/wp-content/uploads/2023/06/MG_7840.jpg" alt="Clínica">
+      <div class="gal-overlay"></div>
     </div>
-    <div class="gal-item reveal reveal-delay-2">
+    <div class="gal-item reveal rd2">
       <img src="https://andrezagilio.com.br/wp-content/uploads/2023/06/MG_7804.jpg" alt="Clínica">
+      <div class="gal-overlay"></div>
     </div>
-    <div class="gal-item reveal reveal-delay-1">
+    <div class="gal-item reveal rd1">
       <img src="https://andrezagilio.com.br/wp-content/uploads/2023/06/MG_7786.jpg" alt="Clínica">
+      <div class="gal-overlay"></div>
     </div>
-    <div class="gal-item reveal reveal-delay-2">
+    <div class="gal-item reveal rd2">
       <img src="https://andrezagilio.com.br/wp-content/uploads/2023/06/MG_7779.jpg" alt="Clínica">
+      <div class="gal-overlay"></div>
     </div>
   </div>
 </section>
 
 <!-- CONTATO -->
 <section class="contato" id="contato">
-  <div class="contato-left">
-    <h2 class="contato-title reveal">Agende sua<br><em>consulta</em></h2>
-    <div class="info-block">
-      <div class="info-item reveal">
-        <span class="info-label">Clínica</span>
-        <span class="info-value">ISE — Instituto de Saúde Especializada<br>Av. Casemiro Perez, 180, Vila Harmonia<br>Araraquara – SP</span>
+  <div class="contato-left" style="position:relative;">
+    <h2 class="contato-title reveal">Agende sua <em>consulta</em></h2>
+    <div class="info-list">
+      <div class="info-item reveal rd1">
+        <div class="info-label">Clínica</div>
+        <div class="info-value">ISE — Instituto de Saúde Especializada<br>Av. Casemiro Perez, 180, Vila Harmonia<br>Araraquara – SP</div>
+        <img src="https://andrezagilio.com.br/wp-content/uploads/2023/06/logo-ise-444x272-1.png" alt="ISE" style="height:36px;filter:brightness(0) invert(1);opacity:0.7;margin-top:12px;">
       </div>
-      <div class="info-item reveal reveal-delay-1">
-        <span class="info-label">Telefone</span>
-        <span class="info-value">
+      <div class="info-item reveal rd2">
+        <div class="info-label">Telefone</div>
+        <div class="info-value">
           <a href="tel:+551634619600">(16) 3461-9600</a><br>
           <a href="tel:+5516997950485">(16) 99795-0485</a>
-        </span>
+        </div>
       </div>
-      <div class="info-item reveal reveal-delay-2">
-        <span class="info-label">Agendamento Online</span>
-        <span class="info-value">
-          <a href="https://wa.me/5516997950485" target="_blank">WhatsApp direto →</a>
-        </span>
+      <div class="info-item reveal rd3">
+        <div class="info-label">Agendamento rápido</div>
+        <div class="info-value"><a href="https://wa.me/5516997950485" target="_blank">WhatsApp direto →</a></div>
       </div>
     </div>
-    <div class="social-row reveal reveal-delay-3">
+    <div class="social-row reveal rd4">
       <a href="https://wa.me/5516997950485" target="_blank" class="social-btn">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.116 1.524 5.849L.057 23.428a.5.5 0 0 0 .617.61l5.765-1.516A11.953 11.953 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.955 9.955 0 0 1-5.093-1.396l-.366-.217-3.786.994 1.012-3.695-.238-.38A9.954 9.954 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
         WhatsApp
@@ -708,63 +366,37 @@
       </a>
     </div>
   </div>
-  <div class="contato-right">
+  <div class="contato-right" style="padding:0;display:flex;flex-direction:column;">
+    <div class="ise-photo" style="flex:0 0 260px;overflow:hidden;">
+      <img src="uploads/pasted-1777078436221-0.png" alt="ISE - Instituto de Saúde Especializado" style="width:100%;height:260px;object-fit:cover;object-position:center;transition:transform 0.6s;display:block;">
+    </div>
+    <div style="padding:56px 64px;flex:1;display:flex;flex-direction:column;justify-content:center;">
     <h3 class="form-title reveal">Envie uma mensagem</h3>
     <form onsubmit="handleForm(event)">
-      <div class="form-group reveal">
-        <label class="form-label">Nome</label>
-        <input class="form-input" type="text" placeholder="Seu nome completo" required>
-      </div>
-      <div class="form-group reveal reveal-delay-1">
-        <label class="form-label">E-mail</label>
-        <input class="form-input" type="email" placeholder="seu@email.com" required>
-      </div>
-      <div class="form-group reveal reveal-delay-2">
-        <label class="form-label">Mensagem</label>
-        <textarea class="form-textarea" placeholder="Como posso ajudar?" required></textarea>
-      </div>
-      <button type="submit" class="btn-submit reveal reveal-delay-3">Enviar mensagem →</button>
+      <div class="form-group reveal"><label class="form-label">Nome</label><input class="form-input" type="text" placeholder="Seu nome completo" required></div>
+      <div class="form-group reveal rd1"><label class="form-label">E-mail</label><input class="form-input" type="email" placeholder="seu@email.com" required></div>
+      <div class="form-group reveal rd2"><label class="form-label">Mensagem</label><textarea class="form-textarea" placeholder="Como posso ajudar?" required></textarea></div>
+      <button type="submit" class="btn-submit reveal rd3">Enviar mensagem →</button>
     </form>
+    </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
-  <span class="footer-logo"><img src="uploads/pasted-1777074716741-0.png" alt="Dra. Andreza Gilio" style="height:40px;filter:brightness(0) invert(1);opacity:0.85;"></span>
-  <span class="footer-crm">CRM-SP 129977 · Endocrinologia Pediátrica</span>
+  <span class="footer-logo"><img src="uploads/pasted-1777074716741-0.png" alt="Dra. Andreza Gilio"></span>
+  <span class="footer-crm">CRM-SP 129977 · Endocrinologia Pediátrica · RQE 422561</span>
   <span class="footer-copy">© 2025 · Araraquara, SP</span>
 </footer>
+
 </div><!-- /.site-wrap -->
 
 <!-- FLOATING WA -->
-<a href="https://wa.me/5516997950485" target="_blank" class="wa-float" title="Agendar pelo WhatsApp">
+<a href="https://wa.me/5516997950485" target="_blank" class="wa-float">
   <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.116 1.524 5.849L.057 23.428a.5.5 0 0 0 .617.61l5.765-1.516A11.953 11.953 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.955 9.955 0 0 1-5.093-1.396l-.366-.217-3.786.994 1.012-3.695-.238-.38A9.954 9.954 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+  <span class="wa-label">Agendar pelo WhatsApp</span>
 </a>
 
-<script>
-  // Nav scroll
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 60);
-  });
-
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); }
-    });
-  }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
-  reveals.forEach(r => observer.observe(r));
-
-  // Form handler
-  function handleForm(e) {
-    e.preventDefault();
-    const btn = e.target.querySelector('.btn-submit');
-    btn.textContent = 'Mensagem enviada ✓';
-    btn.style.background = 'var(--gold)';
-    setTimeout(() => { btn.textContent = 'Enviar mensagem →'; btn.style.background = ''; e.target.reset(); }, 3000);
-  }
-</script>
+<script src="script.js"></script>
 </body>
 </html>
