@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dra. Andreza Gilio — Endocrinologia Pediátrica</title>
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --purple:  #6B3FA0;
+  --purple2: #8B55C0;
+  --purple-dk: #3D1F6B;
+  --lime:    #8DC63F;
+  --orange:  #F7941D;
+  --pink:    #E8375A;
+  --cream:   #FAF8F5;
+  --cream2:  #F0EBE0;
+  --text:    #1E1228;
+  --muted:   #7A6890;
+  --white:   #FFFFFF;
+  --max-w:   1216px;
+  --font:    'Quicksand', system-ui, sans-serif;
+  --radius:  16px;
+}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font);background:var(--cream);color:var(--text);overflow-x:hidden;}
+
+/* SITE WRAP */
+.site-wrap{max-width:var(--max-w);margin:0 auto;overflow:hidden;box-shadow:0 0 80px rgba(0,0,0,0.10);}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:50%;transform:translateX(-50%);
+  width:100%;max-width:var(--max-w);z-index:200;
+  transition:background 0.4s,box-shadow 0.4s;
+}
+nav.scrolled{background:rgba(250,248,245,0.95);backdrop-filter:blur(20px);box-shadow:0 1px 0 rgba(0,0,0,0.06);}
+.nav-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:24px 48px;transition:padding 0.4s,height 0.4s;height:auto;
+}
+nav.scrolled .nav-inner{padding:0 48px;height:60px;}
+.nav-logo img{height:44px;width:auto;transition:filter 0.4s,opacity 0.4s;}
+.nav-logo .logo-main{display:block;}
+.nav-logo .logo-scroll{display:none;height:36px;}
+nav.scrolled .nav-logo .logo-main{display:none;}
+nav.scrolled .nav-logo .logo-scroll{display:block;}
+.nav-links{display:flex;gap:32px;list-style:none;}
+.nav-links a{
+  font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;
+  text-decoration:none;color:rgba(255,255,255,0.8);transition:color 0.25s;
+}
+nav.scrolled .nav-links a{color:var(--muted);}
+.nav-links a:hover{color:var(--orange)!important;}
+.nav-cta{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:8px 18px;border-radius:100px;
+  background:var(--orange);color:#fff;
+  font-size:12px;font-weight:600;letter-spacing:0.06em;text-transform:uppercase;
+  text-decoration:none;transition:transform 0.2s,box-shadow 0.2s;
+}
+.nav-cta:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(247,148,29,0.4);}
+
+/* ── CAROUSEL HERO ── */
+.carousel{position:relative;height:700px;overflow:hidden;background:var(--purple-dk);}
+.carousel-track{
+  display:flex;height:700px;
+  transition:transform 0.8s cubic-bezier(0.77,0,0.175,1);
+}
+.cslide{
+  flex:0 0 100%;min-height:100vh;position:relative;overflow:hidden;
+}
+
+/* Slide 1 — split layout (existing hero) */
+.cslide-split{
+  display:grid;grid-template-columns:1fr 1fr;height:700px;
+  background:var(--purple-dk);
+}
+.hero-left{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:80px 56px 60px;position:relative;z-index:2;
+}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;
+  color:var(--lime);margin-bottom:28px;
+}
+.hero-eyebrow::before{content:'';width:28px;height:2px;background:var(--lime);}
+.hero-title{font-size:clamp(42px,5.5vw,76px);font-weight:700;line-height:1.0;color:var(--white);margin-bottom:12px;}
+.hero-title span{color:var(--orange);}
+.hero-name{font-size:clamp(16px,2vw,22px);font-weight:300;color:rgba(255,255,255,0.5);margin-bottom:52px;letter-spacing:0.02em;}
+.hero-cards{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.hcard{
+  background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);
+  border-radius:var(--radius);padding:20px;cursor:default;
+  transition:background 0.3s,transform 0.3s,border-color 0.3s,box-shadow 0.3s;backdrop-filter:blur(8px);
+}
+.hcard:hover{background:rgba(255,255,255,0.13);transform:translateY(-4px);border-color:rgba(255,255,255,0.25);box-shadow:0 16px 40px rgba(0,0,0,0.3);}
+.hcard-icon{width:40px;height:40px;border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:14px;}
+.hcard-icon.c1{background:rgba(141,198,63,0.2);}
+.hcard-icon.c2{background:rgba(247,148,29,0.2);}
+.hcard-icon.c3{background:rgba(232,55,90,0.2);}
+.hcard-icon.c4{background:rgba(139,85,192,0.2);}
+.hcard-title{font-size:14px;font-weight:700;color:var(--white);margin-bottom:4px;}
+.hcard-sub{font-size:12px;color:rgba(255,255,255,0.45);line-height:1.5;}
+.hero-cta-row{display:flex;gap:14px;margin-top:40px;flex-wrap:wrap;}
+.btn-hero-primary{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:14px 32px;border-radius:100px;background:var(--orange);color:#fff;
+  font-size:14px;font-weight:700;text-decoration:none;transition:transform 0.2s,box-shadow 0.2s;letter-spacing:0.04em;
+}
+.btn-hero-primary:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(247,148,29,0.5);}
+.btn-hero-ghost{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:14px 32px;border-radius:100px;border:1px solid rgba(255,255,255,0.2);
+  color:rgba(255,255,255,0.75);font-size:14px;font-weight:500;
+  text-decoration:none;transition:all 0.2s;letter-spacing:0.04em;
+}
+.btn-hero-ghost:hover{border-color:var(--lime);color:var(--lime);}
+.hero-right{position:relative;overflow:hidden;}
+.hero-photo{
+  position:absolute;inset:0;
+  background:url('https://andrezagilio.com.br/wp-content/uploads/2023/06/DSC00039-1.jpg') center/cover no-repeat;
+  transform:scale(1.08);transition:transform 10s ease-out;filter:brightness(0.7) saturate(0.9);
+}
+.hero-photo.zoomed{transform:scale(1);}
+.hero-photo-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(90deg,var(--purple-dk) 0%,transparent 35%),
+             linear-gradient(0deg,var(--purple-dk) 0%,transparent 28%);
+  z-index:1;
+}
+.hero-badge{
+  position:absolute;bottom:48px;right:36px;z-index:2;
+  background:rgba(255,255,255,0.1);backdrop-filter:blur(16px);
+  border:1px solid rgba(255,255,255,0.15);border-radius:var(--radius);
+  padding:18px 22px;text-align:center;
+}
+.hero-badge-num{font-size:36px;font-weight:700;color:var(--white);line-height:1;}
+.hero-badge-label{font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:0.1em;text-transform:uppercase;margin-top:4px;}
+
+/* Slides 2–5 — split com foto */
+.cslide-full{height:700px;position:relative;display:grid;grid-template-columns:1fr 1fr;}
+.cslide-panel{
+  display:flex;flex-direction:column;justify-content:center;
+  padding:64px 56px;position:relative;z-index:2;
+}
+.cslide-photo{
+  position:relative;overflow:hidden;
+}
+.cslide-photo img{
+  width:100%;height:100%;object-fit:cover;object-position:center top;
+  transition:transform 8s ease-out;
+}
+.cslide-photo img.zoomed{transform:scale(1.05);}
+.cslide-content{
+  position:relative;z-index:2;
+  max-width:100%;
+}
+.cslide-tag{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:11px;font-weight:700;letter-spacing:0.2em;text-transform:uppercase;
+  margin-bottom:20px;
+}
+.cslide-num{
+  position:absolute;right:32px;bottom:32px;
+  font-size:96px;font-weight:700;line-height:0.85;
+  opacity:0.08;font-variant-numeric:tabular-nums;
+}
+.cslide-title{
+  font-size:clamp(40px,5vw,72px);font-weight:700;line-height:1.05;
+  color:var(--white);margin-bottom:20px;
+}
+.cslide-desc{
+  font-size:16px;line-height:1.8;color:rgba(255,255,255,0.65);
+  margin-bottom:40px;max-width:520px;
+}
+.cslide-cta{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:15px 36px;border-radius:100px;
+  font-size:14px;font-weight:700;letter-spacing:0.04em;text-transform:uppercase;
+  text-decoration:none;color:#fff;
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+.cslide-cta:hover{transform:translateY(-2px);}
+
+/* Carousel controls */
+.carousel-controls{
+  position:absolute;bottom:40px;left:50%;transform:translateX(-50%);
+  display:flex;align-items:center;gap:20px;z-index:10;
+}
+.carousel-dots{display:flex;gap:8px;align-items:center;}
+.cdot{
+  width:8px;height:8px;border-radius:100px;background:rgba(255,255,255,0.3);
+  cursor:pointer;transition:background 0.3s,width 0.3s;border:none;padding:0;
+}
+.cdot.active{width:28px;background:var(--white);}
+.carousel-arrows{
+  position:absolute;top:50%;transform:translateY(-50%);
+  width:100%;display:flex;justify-content:space-between;
+  padding:0 24px;z-index:10;pointer-events:none;
+}
+.carr{
+  width:48px;height:48px;border-radius:50%;
+  background:rgba(255,255,255,0.12);backdrop-filter:blur(8px);
+  border:1px solid rgba(255,255,255,0.2);
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;pointer-events:all;
+  transition:background 0.2s,transform 0.2s;color:#fff;
+}
+.carr:hover{background:rgba(255,255,255,0.22);transform:scale(1.08);}
+.carr svg{width:18px;height:18px;stroke:currentColor;stroke-width:2;fill:none;stroke-linecap:round;}
+
+/* Progress bar */
+.carousel-progress{
+  position:absolute;bottom:0;left:0;right:0;height:3px;
+  background:rgba(255,255,255,0.1);z-index:10;
+}
+.carousel-progress-bar{
+  height:100%;background:var(--lime);
+  transition:width 0.1s linear;
+}
+
+/* Slide-in animation for content */
+.cslide.entering .cslide-content > *,
+.cslide.entering .hero-eyebrow,
+.cslide.entering .hero-title,
+.cslide.entering .hero-name,
+.cslide.entering .hero-cards,
+.cslide.entering .hero-cta-row{
+  animation:slideRight 0.7s forwards;
+}
+.cslide.entering .hero-title{animation-delay:0.15s;}
+.cslide.entering .hero-name{animation-delay:0.25s;}
+.cslide.entering .hero-cards{animation-delay:0.35s;}
+.cslide.entering .hero-cta-row{animation-delay:0.5s;}
+.cslide.entering .cslide-tag{animation-delay:0.1s;}
+.cslide.entering .cslide-title{animation-delay:0.2s;}
+.cslide.entering .cslide-desc{animation-delay:0.32s;}
+.cslide.entering .cslide-cta{animation-delay:0.44s;}
+
+/* ── MARQUEE ── */
+.marquee-wrap{background:var(--lime);overflow:hidden;padding:16px 0;}
+.marquee-track{display:flex;gap:56px;width:max-content;animation:marquee 22s linear infinite;}
+.marquee-item{
+  font-size:16px;font-weight:700;color:#fff;white-space:nowrap;
+  display:flex;align-items:center;gap:56px;letter-spacing:0.04em;
+}
+.marquee-item::after{content:'✦';font-size:12px;color:rgba(255,255,255,0.5);}
+
+/* ── SOBRE ── */
+.sobre{display:grid;grid-template-columns:1fr 1fr;height:800px;}
+.sobre-img-wrap{position:relative;overflow:hidden;}
+.sobre-img{width:100%;height:100%;object-fit:cover;object-position:center top;transition:transform 0.6s ease;}
+.sobre-img-wrap:hover .sobre-img{transform:scale(1.03);}
+.sobre-img-badge{
+  position:absolute;top:32px;left:32px;
+  background:var(--orange);color:#fff;
+  border-radius:100px;padding:10px 20px;
+  font-size:11px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;
+}
+.sobre-content{padding:80px 64px;display:flex;flex-direction:column;justify-content:center;background:var(--cream);}
+.section-label{font-size:11px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--orange);margin-bottom:20px;}
+.section-title{font-size:clamp(30px,3.5vw,50px);font-weight:700;line-height:1.1;color:var(--purple-dk);margin-bottom:28px;}
+.section-title em{font-style:normal;color:var(--purple);}
+.sobre-text{font-size:15px;line-height:1.8;color:var(--muted);margin-bottom:18px;font-weight:400;}
+.stats-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:36px;}
+.stat-card{
+  background:var(--cream2);border-radius:var(--radius);padding:24px;
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+.stat-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(107,63,160,0.12);}
+.stat-card-num{font-size:40px;font-weight:700;color:var(--purple);line-height:1;}
+.stat-card-label{font-size:12px;font-weight:600;color:var(--muted);margin-top:6px;letter-spacing:0.06em;text-transform:uppercase;}
+.creds{display:flex;flex-direction:column;gap:10px;margin-top:28px;padding-top:28px;border-top:1px solid var(--cream2);}
+.cred{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--muted);}
+.cred-dot{width:6px;height:6px;border-radius:50%;background:var(--lime);flex-shrink:0;}
+
+/* ── ENDOCRINOLOGIA ── */
+.endo{background:var(--purple-dk);padding:96px 64px;}
+.endo-inner{display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:center;}
+.endo-title{font-size:clamp(28px,3.5vw,48px);font-weight:700;color:var(--white);line-height:1.15;}
+.endo-title em{font-style:normal;color:var(--lime);}
+.endo-line{width:48px;height:3px;background:var(--orange);border-radius:2px;margin:20px 0;}
+.endo-text{font-size:15px;line-height:1.85;color:rgba(255,255,255,0.6);}
+.endo-pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;}
+.pill{
+  padding:8px 18px;border-radius:100px;
+  border:1px solid rgba(255,255,255,0.15);
+  font-size:12px;font-weight:600;color:rgba(255,255,255,0.65);
+  letter-spacing:0.05em;
+  transition:background 0.2s,border-color 0.2s,color 0.2s;
+}
+.pill:hover{background:rgba(141,198,63,0.15);border-color:var(--lime);color:var(--lime);}
+
+/* ── AREAS ── */
+.areas{padding:96px 64px;background:var(--cream);}
+.areas-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:56px;}
+.areas-list{display:flex;flex-direction:column;gap:16px;}
+.acard{
+  display:grid;grid-template-columns:72px 1fr auto;align-items:center;gap:32px;
+  background:var(--white);border-radius:var(--radius);
+  padding:28px 36px;
+  border:1px solid transparent;
+  transition:transform 0.25s,box-shadow 0.25s,border-color 0.25s;
+  cursor:default;overflow:hidden;position:relative;
+}
+.acard::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:4px;
+  background:var(--lime);border-radius:4px 0 0 4px;
+  transform:scaleY(0);transform-origin:center;
+  transition:transform 0.3s;
+}
+.acard:nth-child(2)::before{background:var(--orange);}
+.acard:nth-child(3)::before{background:var(--pink);}
+.acard:nth-child(4)::before{background:var(--purple2);}
+.acard:hover{transform:translateX(6px);box-shadow:0 12px 40px rgba(107,63,160,0.10);border-color:var(--cream2);}
+.acard:hover::before{transform:scaleY(1);}
+.acard-icon-wrap{
+  width:72px;height:72px;border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--cream2);transition:background 0.3s,transform 0.3s;flex-shrink:0;
+}
+.acard:hover .acard-icon-wrap{transform:scale(1.08);}
+.acard:nth-child(1):hover .acard-icon-wrap{background:rgba(141,198,63,0.12);}
+.acard:nth-child(2):hover .acard-icon-wrap{background:rgba(247,148,29,0.12);}
+.acard:nth-child(3):hover .acard-icon-wrap{background:rgba(232,55,90,0.12);}
+.acard:nth-child(4):hover .acard-icon-wrap{background:rgba(139,85,192,0.12);}
+.acard-icon-wrap svg{width:32px;height:32px;}
+.acard-body{}
+.acard-num{font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.acard-title{font-size:20px;font-weight:700;color:var(--purple-dk);margin-bottom:8px;}
+.acard-desc{font-size:14px;line-height:1.7;color:var(--muted);}
+.acard-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:12px 24px;border-radius:100px;white-space:nowrap;
+  background:var(--cream2);color:var(--purple);
+  font-size:13px;font-weight:700;text-decoration:none;
+  transition:background 0.2s,color 0.2s,transform 0.2s;letter-spacing:0.04em;
+  flex-shrink:0;
+}
+.acard-btn:hover{background:var(--purple);color:var(--white);transform:scale(1.04);}
+
+/* ── GALERIA ── */
+.galeria{padding:56px 64px;background:var(--cream2);}
+.gal-grid{
+  display:grid;
+  grid-template-columns:1.5fr 1fr 1fr;
+  grid-template-rows:220px 220px;
+  gap:12px;margin-top:48px;
+}
+.gal-item{overflow:hidden;border-radius:var(--radius);position:relative;}
+.gal-item:first-child{grid-row:1/3;}
+.gal-item img{width:100%;height:100%;object-fit:cover;transition:transform 0.6s ease,filter 0.4s;}
+.gal-item:hover img{transform:scale(1.06);filter:brightness(1.05) saturate(1.1);}
+.gal-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(0deg,rgba(61,31,107,0.5) 0%,transparent 50%);
+  opacity:0;transition:opacity 0.3s;border-radius:var(--radius);
+}
+.gal-item:hover .gal-overlay{opacity:1;}
+
+/* ── CONTATO ── */
+.contato{display:grid;grid-template-columns:1fr 1fr;}
+.contato-left{
+  background:var(--purple-dk);padding:80px 64px;
+  display:flex;flex-direction:column;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.contato-left::before{
+  content:'';position:absolute;
+  width:300px;height:300px;border-radius:50%;
+  background:radial-gradient(circle,rgba(141,198,63,0.12) 0%,transparent 70%);
+  top:-80px;right:-80px;pointer-events:none;
+}
+.contato-title{font-size:clamp(28px,3.5vw,46px);font-weight:700;color:var(--white);line-height:1.1;margin-bottom:48px;}
+.contato-title em{font-style:normal;color:var(--lime);}
+.info-list{display:flex;flex-direction:column;gap:28px;}
+.info-item{}
+.info-label{font-size:10px;font-weight:700;letter-spacing:0.18em;text-transform:uppercase;color:var(--lime);margin-bottom:6px;}
+.info-value{font-size:15px;color:rgba(255,255,255,0.75);line-height:1.6;}
+.info-value a{color:rgba(255,255,255,0.75);text-decoration:none;transition:color 0.2s;}
+.info-value a:hover{color:var(--orange);}
+.social-row{display:flex;gap:12px;margin-top:40px;}
+.social-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:11px 22px;border-radius:100px;
+  border:1px solid rgba(255,255,255,0.15);
+  color:rgba(255,255,255,0.65);font-size:13px;font-weight:600;
+  text-decoration:none;letter-spacing:0.05em;text-transform:uppercase;
+  transition:all 0.2s;
+}
+.social-btn:hover{background:var(--orange);border-color:var(--orange);color:#fff;}
+
+.contato-right{background:var(--cream);padding:80px 64px;display:flex;flex-direction:column;justify-content:center;}
+.form-title{font-size:28px;font-weight:700;color:var(--purple-dk);margin-bottom:36px;}
+.form-group{display:flex;flex-direction:column;gap:8px;margin-bottom:24px;}
+.form-label{font-size:11px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;color:var(--muted);}
+.form-input,.form-textarea{
+  border:none;border-bottom:2px solid var(--cream2);
+  background:transparent;padding:12px 0;
+  font-family:var(--font);font-size:15px;font-weight:500;color:var(--text);
+  outline:none;transition:border-color 0.3s;
+}
+.form-input:focus,.form-textarea:focus{border-color:var(--purple);}
+.form-textarea{resize:none;min-height:100px;}
+.btn-submit{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:16px 40px;border-radius:100px;
+  background:var(--purple);color:#fff;
+  font-family:var(--font);font-size:14px;font-weight:700;
+  letter-spacing:0.06em;text-transform:uppercase;
+  border:none;cursor:pointer;margin-top:12px;
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+.btn-submit:hover{transform:translateY(-2px);box-shadow:0 10px 32px rgba(107,63,160,0.4);}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--text);
+  padding:48px 64px;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px;
+}
+.footer-logo img{height:38px;filter:brightness(0) invert(1);opacity:0.8;}
+.footer-crm{font-size:12px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;}
+.footer-copy{font-size:12px;color:rgba(255,255,255,0.3);letter-spacing:0.06em;}
+
+/* ── FLOATING WA ── */
+.wa-float{
+  position:fixed;bottom:32px;right:max(32px, calc((100vw - var(--max-w))/2 + 32px));
+  z-index:300;
+  display:flex;align-items:center;gap:10px;
+  background:#25D366;color:#fff;
+  padding:14px 24px;border-radius:100px;
+  text-decoration:none;font-size:14px;font-weight:700;
+  box-shadow:0 8px 32px rgba(37,211,102,0.5);
+  transition:transform 0.2s,box-shadow 0.2s,padding 0.3s;
+  white-space:nowrap;
+  animation:waPulse 3s ease-in-out infinite;
+}
+.wa-float:hover{transform:translateY(-3px);box-shadow:0 14px 48px rgba(37,211,102,0.6);animation:none;}
+.wa-float svg{width:20px;height:20px;fill:#fff;flex-shrink:0;}
+.wa-label{transition:max-width 0.3s,opacity 0.3s;}
+
+/* ── SCROLL REVEAL ── */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity 0.7s ease,transform 0.7s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.rd1{transition-delay:0.1s;}.rd2{transition-delay:0.2s;}.rd3{transition-delay:0.3s;}.rd4{transition-delay:0.4s;}
+
+/* ── KEYFRAMES ── */
+@keyframes slideRight{from{opacity:0;transform:translateX(-28px);}to{opacity:1;transform:translateX(0);}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+@keyframes heroZoom{from{transform:scale(1.12);}to{transform:scale(1);}}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+@keyframes waPulse{0%,100%{box-shadow:0 8px 32px rgba(37,211,102,0.5);}50%{box-shadow:0 8px 52px rgba(37,211,102,0.75);}}
+@keyframes countUp{from{opacity:0;}to{opacity:1;}}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .nav-inner{padding:16px 20px!important;}
+  .nav-links{display:none;}
+  .hero{grid-template-columns:1fr;}
+  .hero-right{display:none;}
+  .hero-left{padding:120px 24px 64px;}
+  .hero-cards{grid-template-columns:1fr;}
+  .sobre{grid-template-columns:1fr;}
+  .sobre-img-wrap{min-height:280px;}
+  .sobre-content{padding:56px 24px;}
+  .endo{padding:72px 24px;}
+  .endo-inner{grid-template-columns:1fr;gap:40px;}
+  .areas{padding:72px 24px;}
+  .areas-header{flex-direction:column;align-items:flex-start;gap:16px;}
+  .acard{grid-template-columns:56px 1fr;padding:20px 20px;}
+  .acard-btn{display:none;}
+  .galeria{padding:72px 24px;}
+  .gal-grid{grid-template-columns:1fr 1fr;grid-template-rows:auto;}
+  .gal-item:first-child{grid-row:auto;grid-column:1/3;}
+  .gal-item{height:200px;}
+  .contato{grid-template-columns:1fr;}
+  .contato-left,.contato-right{padding:56px 24px;}
+  footer{padding:40px 24px;}
+  .wa-float{right:24px;padding:14px 20px;}
+}
+</style>
+</head>
+<body>
+
+<div class="site-wrap">
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <img class="logo-main" src="uploads/pasted-1777074716741-0.png" alt="Dra. Andreza Gilio" style="filter:brightness(0) invert(1);">
+      <img class="logo-scroll" src="https://andrezagilio.com.br/wp-content/uploads/2023/06/Group.svg" alt="Dra. Andreza Gilio">
+    </a>
+    <ul class="nav-links">
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#areas">Áreas</a></li>
+      <li><a href="#galeria">Clínica</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+    <a href="https://wa.me/5516997950485" target="_blank" class="nav-cta">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.116 1.524 5.849L.057 23.428a.5.5 0 0 0 .617.61l5.765-1.516A11.953 11.953 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.955 9.955 0 0 1-5.093-1.396l-.366-.217-3.786.994 1.012-3.695-.238-.38A9.954 9.954 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      Agendar
+    </a>
+  </div>
+</nav>
+
+<!-- CAROUSEL HERO -->
+<div class="carousel" id="carousel">
+  <div class="carousel-track" id="carouselTrack">
+
+    <!-- SLIDE 1 — Hero atual (split) -->
+    <div class="cslide entering" id="slide0">
+      <div class="cslide-split">
+        <div class="hero-left">
+          <span class="hero-eyebrow">Endocrinologia Pediátrica</span>
+          <h1 class="hero-title" style="font-size: 44px">Cuidado especializado<br><span>para o seu filho</span></h1>
+          <p class="hero-name" style="width: 0px; height: 0px; font-size: 1px; margin: 0px 0px 1px">
+</p>
+          <div class="hero-cards">
+            <div class="hcard"><div class="hcard-icon c1"><svg viewBox="0 0 24 24" fill="none" stroke="#8DC63F" stroke-width="2" stroke-linecap="round" style="width: 24px"><line x1="12" y1="2" x2="12" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div class="hcard-title">Baixa Estatura</div><div class="hcard-sub">Distúrbios do crescimento e desenvolvimento</div></div>
+            <div class="hcard"><div class="hcard-icon c2"><svg viewBox="0 0 24 24" fill="none" stroke="#F7941D" stroke-width="2" stroke-linecap="round" style="width: 24px"><circle cx="12" cy="8" r="4"/><path d="M12 12v8M8 20h8"/></svg></div><div class="hcard-title">Puberdade Precoce</div><div class="hcard-sub">Distúrbios do desenvolvimento sexual</div></div>
+            <div class="hcard"><div class="hcard-icon c3"><svg viewBox="0 0 24 24" fill="none" stroke="#E8375A" stroke-width="2" stroke-linecap="round" style="width: 24px"><path d="M12 6c0 0-6 5-6 10a6 6 0 0012 0c0-5-6-10-6-10z"/></svg></div><div class="hcard-title">Diabetes Infantil</div><div class="hcard-sub">Monitoramento e controle glicêmico</div></div>
+            <div class="hcard"><div class="hcard-icon c4"><svg viewBox="0 0 24 24" fill="none" stroke="#8B55C0" stroke-width="2" stroke-linecap="round" style="width: 24px"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div class="hcard-title">Obesidade Infantil</div><div class="hcard-sub">Tratamento e acompanhamento nutricional</div></div>
+          </div>
+          <div class="hero-cta-row">
+            <a href="https://wa.me/5516997950485" target="_blank" class="btn-hero-primary">Agendar consulta →</a>
+            <a href="#sobre" class="btn-hero-ghost">Conheça a Dra. Andreza</a>
+          </div>
+        </div>
+        <div class="hero-right">
+          <div class="hero-photo zoomed" id="heroPhoto"></div>
+          <div class="hero-photo-overlay"></div>
+          <div class="hero-badge">
+            <div class="hero-badge-num" id="yearsCount">14+</div>
+            <div class="hero-badge-label">Anos de experiência</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 2 — Distúrbio do Crescimento -->
+    <div class="cslide" id="slide1">
+      <div class="cslide-full">
+        <div class="cslide-panel" style="background:#A8D44A;">
+          <div class="cslide-content">
+            <div class="cslide-tag" style="color:rgba(0,0,0,0.5)"><span style="display:inline-block;width:28px;height:2px;background:rgba(0,0,0,0.4)"></span> 01 · Área de Atuação</div>
+            <h2 class="cslide-title" style="color:#1E1228;">Distúrbio do<br>Crescimento</h2>
+            <p class="cslide-desc" style="color:rgba(30,18,40,0.65);">Condições que afetam o crescimento físico e maturação sexual em crianças. O diagnóstico precoce garante um desenvolvimento saudável para cada fase da vida.</p>
+            <a href="https://wa.me/5516997950485" target="_blank" class="cslide-cta" style="background:#1E1228;color:#fff;">Agendar consulta →</a>
+          </div>
+          <span class="cslide-num" style="color:#1E1228;">01</span>
+        </div>
+        <div class="cslide-photo">
+          <img src="uploads/ChatGPT Image 24 de abr. de 2026, 21_46_31.png" alt="Distúrbio do Crescimento">
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 3 — Distúrbios da Tireoide -->
+    <div class="cslide" id="slide2">
+      <div class="cslide-full">
+        <div class="cslide-panel" style="background:#F5A800;">
+          <div class="cslide-content">
+            <div class="cslide-tag" style="color:rgba(0,0,0,0.5)"><span style="display:inline-block;width:28px;height:2px;background:rgba(0,0,0,0.4)"></span> 02 · Área de Atuação</div>
+            <h2 class="cslide-title" style="color:#1E1228;">Distúrbios<br>da Tireoide</h2>
+            <p class="cslide-desc" style="color:rgba(30,18,40,0.65);">Hipotireoidismo, hipertireoidismo e outras doenças que causam desequilíbrios hormonais. Tratamento adequado para garantir o bem-estar da criança.</p>
+            <a href="https://wa.me/5516997950485" target="_blank" class="cslide-cta" style="background:#1E1228;color:#fff;">Agendar consulta →</a>
+          </div>
+          <span class="cslide-num" style="color:#1E1228;">02</span>
+        </div>
+        <div class="cslide-photo">
+          <img src="uploads/ChatGPT Image 24 de abr. de 2026, 21_46_14.png" alt="Distúrbios da Tireoide">
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 4 — Diabetes Infantil -->
+    <div class="cslide" id="slide3">
+      <div class="cslide-full">
+        <div class="cslide-panel" style="background:#E8436A;">
+          <div class="cslide-content">
+            <div class="cslide-tag" style="color:rgba(255,255,255,0.6)"><span style="display:inline-block;width:28px;height:2px;background:rgba(255,255,255,0.5)"></span> 03 · Área de Atuação</div>
+            <h2 class="cslide-title" style="color:#fff;">Diabetes<br>Infantil</h2>
+            <p class="cslide-desc" style="color:rgba(255,255,255,0.7);">Dificuldade na regulação dos níveis de açúcar no sangue. Monitoramento, uso de insulina e orientação de estilo de vida saudável para cada criança.</p>
+            <a href="https://wa.me/5516997950485" target="_blank" class="cslide-cta" style="background:#fff;color:#E8436A;">Agendar consulta →</a>
+          </div>
+          <span class="cslide-num" style="color:#fff;">03</span>
+        </div>
+        <div class="cslide-photo">
+          <img src="uploads/ChatGPT Image 24 de abr. de 2026, 21_48_11.png" alt="Diabetes Infantil">
+        </div>
+      </div>
+    </div>
+
+    <!-- SLIDE 5 — Distúrbios da Puberdade -->
+    <div class="cslide" id="slide4">
+      <div class="cslide-full">
+        <div class="cslide-panel" style="background:#6B3FA0;">
+          <div class="cslide-content">
+            <div class="cslide-tag" style="color:rgba(255,255,255,0.6)"><span style="display:inline-block;width:28px;height:2px;background:rgba(255,255,255,0.5)"></span> 04 · Área de Atuação</div>
+            <h2 class="cslide-title" style="color:#fff;">Distúrbios<br>da Puberdade</h2>
+            <p class="cslide-desc" style="color:rgba(255,255,255,0.7);">Puberdade precoce, tardia ou anormalidades no desenvolvimento sexual. Cuidado especializado para saúde emocional e física dos adolescentes.</p>
+            <a href="https://wa.me/5516997950485" target="_blank" class="cslide-cta" style="background:#fff;color:#6B3FA0;">Agendar consulta →</a>
+          </div>
+          <span class="cslide-num" style="color:#fff;">04</span>
+        </div>
+        <div class="cslide-photo">
+          <img src="uploads/ChatGPT Image 24 de abr. de 2026, 21_46_04.png" alt="Distúrbios da Puberdade">
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.carousel-track -->
+
+  <!-- Arrows -->
+  <div class="carousel-arrows">
+    <button class="carr" id="prevBtn" aria-label="Anterior">
+      <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+    </button>
+    <button class="carr" id="nextBtn" aria-label="Próximo">
+      <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+    </button>
+  </div>
+
+  <!-- Dots -->
+  <div class="carousel-controls">
+    <div class="carousel-dots" id="carouselDots">
+      <button class="cdot active" data-i="0"></button>
+      <button class="cdot" data-i="1"></button>
+      <button class="cdot" data-i="2"></button>
+      <button class="cdot" data-i="3"></button>
+      <button class="cdot" data-i="4"></button>
+    </div>
+  </div>
+
+  <!-- Progress -->
+  <div class="carousel-progress"><div class="carousel-progress-bar" id="progressBar"></div></div>
+
+</div><!-- /.carousel -->
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">Distúrbios do Crescimento</span>
+    <span class="marquee-item">Distúrbios da Tireoide</span>
+    <span class="marquee-item">Diabetes Infantil</span>
+    <span class="marquee-item">Distúrbios da Puberdade</span>
+    <span class="marquee-item">Obesidade Infantil</span>
+    <span class="marquee-item">Endocrinologia Pediátrica</span>
+    <span class="marquee-item">Distúrbios do Crescimento</span>
+    <span class="marquee-item">Distúrbios da Tireoide</span>
+    <span class="marquee-item">Diabetes Infantil</span>
+    <span class="marquee-item">Distúrbios da Puberdade</span>
+    <span class="marquee-item">Obesidade Infantil</span>
+    <span class="marquee-item">Endocrinologia Pediátrica</span>
+  </div>
+</div>
+
+<!-- SOBRE -->
+<section class="sobre" id="sobre">
+  <div class="sobre-img-wrap">
+    <img class="sobre-img" src="uploads/pasted-1777078299378-0.png" alt="Dra. Andreza Gilio">
+    <span class="sobre-img-badge">CRM-SP 129977</span>
+  </div>
+  <div class="sobre-content">
+    <p class="section-label reveal">Sobre a Médica</p>
+    <h2 class="section-title reveal rd1">Dra. Andreza <em>Gilio</em></h2>
+    <p class="sobre-text reveal rd2">Médica formada pela Faculdade de Medicina de Ribeirão Preto (USP), em 2007, com especialização em <strong>Endocrinologia Pediátrica</strong> pela Faculdade de Medicina de São Paulo (USP).</p>
+    <p class="sobre-text reveal rd2">Apaixonada pela saúde infantil, acredita que o desenvolvimento das crianças deve ser tratado com atenção e muito carinho, de forma a prezar pelo equilíbrio.</p>
+    <div class="stats-grid reveal rd3">
+      <div class="stat-card"><div class="stat-card-num" data-target="14">0</div><div class="stat-card-label">Anos de experiência</div></div>
+      <div class="stat-card"><div class="stat-card-num" data-target="2">0</div><div class="stat-card-label">Títulos de especialização</div></div>
+    </div>
+    <div class="creds reveal rd4">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;">
+        <div style="flex:1;">
+          <div class="cred"><span class="cred-dot"></span>Sociedade Brasileira de Pediatria</div>
+          <div class="cred"><span class="cred-dot"></span>Sociedade Brasileira de Endocrinologia e Metabologia</div>
+          <div class="cred"><span class="cred-dot"></span>RQE: 422561</div>
+        </div>
+        <img src="https://andrezagilio.com.br/wp-content/uploads/2023/06/Group.svg" alt="" style="height:64px;flex-shrink:0;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENDOCRINOLOGIA -->
+<section class="endo">
+  <div class="endo-inner">
+    <div>
+      <img src="https://andrezagilio.com.br/wp-content/uploads/2023/06/Arte.svg" alt="" class="endo-arte reveal" style="max-width:180px;margin-bottom:28px;opacity:0.85;">
+      <h2 class="endo-title reveal">O que é <em>Endocrinologia Pediátrica?</em></h2>
+      <div class="endo-line reveal rd1"></div>
+    </div>
+    <div>
+      <p class="endo-text reveal rd1">Especialidade da Medicina dedicada ao diagnóstico e tratamento de distúrbios hormonais em bebês, crianças, pré-adolescentes e adolescentes. Esses distúrbios podem afetar o crescimento, desenvolvimento, metabolismo e reprodução. O objetivo é garantir o equilíbrio hormonal adequado para um crescimento saudável.</p>
+      <div class="endo-pills reveal rd2">
+        <span class="pill">Crescimento</span>
+        <span class="pill">Tireoide</span>
+        <span class="pill">Diabetes</span>
+        <span class="pill">Puberdade</span>
+        <span class="pill">Metabolismo</span>
+        <span class="pill">Hormônios</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AREAS -->
+<section class="areas" id="areas">
+  <div class="areas-header">
+    <div>
+      <p class="section-label reveal">Especialidades</p>
+      <h2 class="section-title reveal rd1">Áreas de <em>Atuação</em></h2>
+    </div>
+    <a href="https://wa.me/5516997950485" target="_blank" class="btn-hero-primary reveal rd2" style="white-space:nowrap;">Agendar consulta →</a>
+  </div>
+  <div class="areas-list">
+    <div class="acard reveal">
+      <div class="acard-icon-wrap">
+        <svg viewBox="0 0 32 32" fill="none" stroke="#8DC63F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 4v24M10 10l6-6 6 6M10 22l6 6 6-6"/>
+          <circle cx="16" cy="16" r="4"/>
+        </svg>
+      </div>
+      <div class="acard-body">
+        <div class="acard-num">01</div>
+        <div class="acard-title">Distúrbio do Crescimento</div>
+        <div class="acard-desc">Condições que afetam o crescimento físico e maturação sexual, diagnosticadas e tratadas para garantir desenvolvimento adequado da criança.</div>
+      </div>
+      <a href="https://wa.me/5516997950485" target="_blank" class="acard-btn">Agendar →</a>
+    </div>
+    <div class="acard reveal rd1">
+      <div class="acard-icon-wrap">
+        <svg viewBox="0 0 32 32" fill="none" stroke="#F7941D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <ellipse cx="16" cy="14" rx="6" ry="8"/>
+          <path d="M10 14c-3 2-4 6-2 9s6 4 8 2M22 14c3 2 4 6 2 9s-6 4-8 2"/>
+          <line x1="16" y1="22" x2="16" y2="28"/>
+        </svg>
+      </div>
+      <div class="acard-body">
+        <div class="acard-num">02</div>
+        <div class="acard-title">Distúrbios da Tireoide</div>
+        <div class="acard-desc">Hipotireoidismo, hipertireoidismo e outras doenças da tireoide que causam desequilíbrios hormonais e afetam o bem-estar da criança.</div>
+      </div>
+      <a href="https://wa.me/5516997950485" target="_blank" class="acard-btn">Agendar →</a>
+    </div>
+    <div class="acard reveal rd2">
+      <div class="acard-icon-wrap">
+        <svg viewBox="0 0 32 32" fill="none" stroke="#E8375A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M16 6c0 0-8 8-8 14a8 8 0 0 0 16 0C24 14 16 6 16 6z"/>
+          <path d="M12 22c1-2 2-3 4-3s3 1 4 3"/>
+        </svg>
+      </div>
+      <div class="acard-body">
+        <div class="acard-num">03</div>
+        <div class="acard-title">Diabetes Infantil</div>
+        <div class="acard-desc">Dificuldade na regulação dos níveis de açúcar no sangue. Monitoramento, uso de insulina e orientação de estilo de vida saudável.</div>
+      </div>
+      <a href="https://wa.me/5516997950485" target="_blank" class="acard-btn">Agendar →</a>
+    </div>
+    <div class="acard reveal rd3">
+      <div class="acard-icon-wrap">
+        <svg viewBox="0 0 32 32" fill="none" stroke="#8B55C0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="16" cy="10" r="5"/>
+          <path d="M8 28c0-4.4 3.6-8 8-8s8 3.6 8 8"/>
+          <path d="M22 13c2 1 3 3 3 5"/>
+          <path d="M10 13c-2 1-3 3-3 5"/>
+        </svg>
+      </div>
+      <div class="acard-body">
+        <div class="acard-num">04</div>
+        <div class="acard-title">Distúrbios da Puberdade</div>
+        <div class="acard-desc">Puberdade precoce, tardia ou anormalidades no desenvolvimento sexual. Diagnóstico e tratamento cuidadoso para saúde emocional e física.</div>
+      </div>
+      <a href="https://wa.me/5516997950485" target="_blank" class="acard-btn">Agendar →</a>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIA -->
+<section class="galeria" id="galeria">
+  <p class="section-label reveal">Espaço de Atendimento</p>
+  <h2 class="section-title reveal rd1">A <em>Clínica</em></h2>
+  <div class="gal-grid">
+    <div class="gal-item reveal">
+      <img src="https://andrezagilio.com.br/wp-content/uploads/2023/06/MG_7847.jpg" alt="Clínica">
+      <div class="gal-overlay"></div>
+    </div>
+    <div class="gal-item reveal rd1">
+      <img src="https://andrezagilio.com.br/wp-content/uploads/2023/06/MG_7840.jpg" alt="Clínica">
+      <div class="gal-overlay"></div>
+    </div>
+    <div class="gal-item reveal rd2">
+      <img src="https://andrezagilio.com.br/wp-content/uploads/2023/06/MG_7804.jpg" alt="Clínica">
+      <div class="gal-overlay"></div>
+    </div>
+    <div class="gal-item reveal rd1">
+      <img src="https://andrezagilio.com.br/wp-content/uploads/2023/06/MG_7786.jpg" alt="Clínica">
+      <div class="gal-overlay"></div>
+    </div>
+    <div class="gal-item reveal rd2">
+      <img src="https://andrezagilio.com.br/wp-content/uploads/2023/06/MG_7779.jpg" alt="Clínica">
+      <div class="gal-overlay"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section class="contato" id="contato">
+  <div class="contato-left" style="position:relative;">
+    <h2 class="contato-title reveal">Agende sua <em>consulta</em></h2>
+    <div class="info-list">
+      <div class="info-item reveal rd1">
+        <div class="info-label">Clínica</div>
+        <div class="info-value">ISE — Instituto de Saúde Especializada<br>Av. Casemiro Perez, 180, Vila Harmonia<br>Araraquara – SP</div>
+        <img src="https://andrezagilio.com.br/wp-content/uploads/2023/06/logo-ise-444x272-1.png" alt="ISE" style="height:36px;filter:brightness(0) invert(1);opacity:0.7;margin-top:12px;">
+      </div>
+      <div class="info-item reveal rd2">
+        <div class="info-label">Telefone</div>
+        <div class="info-value">
+          <a href="tel:+551634619600">(16) 3461-9600</a><br>
+          <a href="tel:+5516997950485">(16) 99795-0485</a>
+        </div>
+      </div>
+      <div class="info-item reveal rd3">
+        <div class="info-label">Agendamento rápido</div>
+        <div class="info-value"><a href="https://wa.me/5516997950485" target="_blank">WhatsApp direto →</a></div>
+      </div>
+    </div>
+    <div class="social-row reveal rd4">
+      <a href="https://wa.me/5516997950485" target="_blank" class="social-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.116 1.524 5.849L.057 23.428a.5.5 0 0 0 .617.61l5.765-1.516A11.953 11.953 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.955 9.955 0 0 1-5.093-1.396l-.366-.217-3.786.994 1.012-3.695-.238-.38A9.954 9.954 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        WhatsApp
+      </a>
+      <a href="https://www.instagram.com/dra.andrezagilio/" target="_blank" class="social-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        Instagram
+      </a>
+    </div>
+  </div>
+  <div class="contato-right" style="padding:0;display:flex;flex-direction:column;">
+    <div class="ise-photo" style="flex:0 0 260px;overflow:hidden;">
+      <img src="uploads/pasted-1777078436221-0.png" alt="ISE - Instituto de Saúde Especializado" style="width:100%;height:260px;object-fit:cover;object-position:center;transition:transform 0.6s;display:block;">
+    </div>
+    <div style="padding:56px 64px;flex:1;display:flex;flex-direction:column;justify-content:center;">
+    <h3 class="form-title reveal">Envie uma mensagem</h3>
+    <form onsubmit="handleForm(event)">
+      <div class="form-group reveal"><label class="form-label">Nome</label><input class="form-input" type="text" placeholder="Seu nome completo" required></div>
+      <div class="form-group reveal rd1"><label class="form-label">E-mail</label><input class="form-input" type="email" placeholder="seu@email.com" required></div>
+      <div class="form-group reveal rd2"><label class="form-label">Mensagem</label><textarea class="form-textarea" placeholder="Como posso ajudar?" required></textarea></div>
+      <button type="submit" class="btn-submit reveal rd3">Enviar mensagem →</button>
+    </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span class="footer-logo"><img src="uploads/pasted-1777074716741-0.png" alt="Dra. Andreza Gilio"></span>
+  <span class="footer-crm">CRM-SP 129977 · Endocrinologia Pediátrica · RQE 422561</span>
+  <span class="footer-copy">© 2025 · Araraquara, SP</span>
+</footer>
+
+</div><!-- /.site-wrap -->
+
+<!-- FLOATING WA -->
+<a href="https://wa.me/5516997950485" target="_blank" class="wa-float">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.553 4.116 1.524 5.849L.057 23.428a.5.5 0 0 0 .617.61l5.765-1.516A11.953 11.953 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22a9.955 9.955 0 0 1-5.093-1.396l-.366-.217-3.786.994 1.012-3.695-.238-.38A9.954 9.954 0 0 1 2 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+  <span class="wa-label">Agendar pelo WhatsApp</span>
+</a>
+
+<script>
+  // ── NAV ──
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+
+  // ── SCROLL REVEAL ──
+  const revObs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); revObs.unobserve(e.target); }});
+  }, {threshold: 0.1, rootMargin: '0px 0px -50px 0px'});
+  document.querySelectorAll('.reveal').forEach(r => revObs.observe(r));
+
+  // ── COUNTER ──
+  function animateCount(el, target, suffix) {
+    const dur = 1200, startTime = performance.now();
+    const tick = now => {
+      const p = Math.min((now - startTime) / dur, 1);
+      const ease = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(ease * target) + (p >= 1 ? suffix : '');
+      if (p < 1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  }
+  const statObs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const t = +e.target.dataset.target;
+        animateCount(e.target, t, t === 2 ? '' : '+');
+        statObs.unobserve(e.target);
+      }
+    });
+  }, {threshold: 0.5});
+  document.querySelectorAll('[data-target]').forEach(el => statObs.observe(el));
+
+  // ── CAROUSEL ──
+  const TOTAL = 5;
+  const DURATION = 6000; // ms per slide
+  let current = 0;
+  let progressStart = null;
+  let paused = false;
+  let rafId = null;
+
+  const track    = document.getElementById('carouselTrack');
+  const dots     = document.querySelectorAll('.cdot');
+  const bar      = document.getElementById('progressBar');
+  const carousel = document.getElementById('carousel');
+
+  function goTo(idx) {
+    const prev = current;
+    current = (idx + TOTAL) % TOTAL;
+    track.style.transform = `translateX(-${current * 100}%)`;
+
+    // dots
+    dots.forEach((d, i) => d.classList.toggle('active', i === current));
+
+    // entering animation
+    const slides = document.querySelectorAll('.cslide');
+    slides.forEach(s => s.classList.remove('entering'));
+    slides[current].classList.add('entering');
+
+    // zoom bg on new slide
+    const bgs = slides[current].querySelectorAll('.cslide-bg');
+    bgs.forEach(bg => { bg.classList.remove('zoomed'); void bg.offsetWidth; bg.classList.add('zoomed'); });
+
+    // reset progress
+    progressStart = performance.now();
+    bar.style.width = '0%';
+    bar.style.transition = 'none';
+  }
+
+  function tick(now) {
+    if (!paused && progressStart !== null) {
+      const elapsed = now - progressStart;
+      const pct = Math.min(elapsed / DURATION * 100, 100);
+      bar.style.width = pct + '%';
+      if (elapsed >= DURATION) goTo(current + 1);
+    }
+    rafId = requestAnimationFrame(tick);
+  }
+
+  // Start
+  progressStart = performance.now();
+  rafId = requestAnimationFrame(tick);
+
+  // Arrows
+  document.getElementById('nextBtn').addEventListener('click', () => goTo(current + 1));
+  document.getElementById('prevBtn').addEventListener('click', () => goTo(current - 1));
+
+  // Dots
+  dots.forEach(d => d.addEventListener('click', () => goTo(+d.dataset.i)));
+
+  // Pause on hover
+  carousel.addEventListener('mouseenter', () => { paused = true; });
+  carousel.addEventListener('mouseleave', () => { paused = false; progressStart = performance.now() - (parseFloat(bar.style.width) / 100 * DURATION); });
+
+  // Keyboard
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight') goTo(current + 1);
+    if (e.key === 'ArrowLeft')  goTo(current - 1);
+  });
+
+  // ── FORM ──
+  function handleForm(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.btn-submit');
+    btn.textContent = 'Mensagem enviada ✓';
+    btn.style.background = 'var(--lime)';
+    setTimeout(() => { btn.textContent = 'Enviar mensagem →'; btn.style.background = ''; e.target.reset(); }, 3000);
+  }
+</script>
+</body>
+</html>
